@@ -2,17 +2,21 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+
+  // Saves the text within each hour to local storage upon clicking the "save" button.
   var saveButtonEl = $('.saveBtn');
 
-  saveButtonEl.on('click', function(){
+    saveButtonEl.on('click', function(){
+    console.log(this)
     var currentHour = this.dataset.hour;
     console.log(currentHour);
-    var task = $('#text-${currentHour}')[0].value;
 
-    localStorage.setItem('key-${currentHour}', task);
+    var task = $(`#text-${currentHour}`)[0].value;
+    console.log(task)
 
-
+    localStorage.setItem(`key-${currentHour}`, task);
   })
+  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
