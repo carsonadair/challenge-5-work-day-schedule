@@ -5,14 +5,39 @@ $(function () {
 
   dayDisplay = dayjs();
   $("#currentDay").text(dayDisplay.format("dddd, MMMM D YYYY"));
+
+
+  var currentTime = dayjs().hour();
+
+  $('.time-block').each(function () {
+
+    console.log(this)
+
+    var timeEl = $(this).attr("data-hour");
+    console.log(timeEl)
+
+    if (timeEl < currentTime) {
+      $(this).addClass("past");
+      $(this).removeClass("present");
+    } else if (timeEl === currentTime) {
+      $(this).addClass("present");
+      $(this).removeClass("past");
+    } else {
+      $(this).addClass("future");
+      $(this).removeClass("past");
+      $(this).removeClass("present");
+    }
+  
+  })
+
   // Saves the text within each hour to local storage upon clicking the "save" button.
   var saveButtonEl = $('.saveBtn');
 
-    saveButtonEl.on('click', function(){
+  saveButtonEl.on('click', function () {
     var currentHour = this.dataset.hour;
     var task = $(`#text-${currentHour}`)[0].value;
     localStorage.setItem(`key-${currentHour}`, task);
-    }
+  }
   )
 
   // Displays saved tasks from local storage in the text boxes for the corresponding hours.
@@ -35,8 +60,7 @@ $(function () {
   savedTask17 = localStorage.getItem(`key-17`)
   $(`#text-17`)[0].value = savedTask17
 
-  
-  var currentTime = dayjs().hour();
+
 
 
 
