@@ -3,6 +3,8 @@
 // in the html.
 $(function () {
 
+  dayDisplay = dayjs();
+  $("#currentDay").text(dayDisplay.format("dddd, MMMM D YYYY"));
   // Saves the text within each hour to local storage upon clicking the "save" button.
   var saveButtonEl = $('.saveBtn');
 
@@ -34,6 +36,8 @@ $(function () {
   $(`#text-17`)[0].value = savedTask17
 
   
+  var currentTime = dayjs().hour();
+
 
 
 
